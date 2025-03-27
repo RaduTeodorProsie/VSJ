@@ -14,9 +14,9 @@ void Track::restart() {
 }
 
 Track::Track(const std::string &title) : title(title) {
-    const bool open1 = instrumental.openFromFile("../assets/music/" + title + "/Inst.mp3");
+    const bool open1 = instrumental.openFromFile("./assets/music/" + title + "/Inst.mp3");
 
-    if (const bool open2 = voices.openFromFile("../assets/music/" + title + "/Voices.mp3");!open1 || !open2) {
+    if (const bool open2 = voices.openFromFile("./assets/music/" + title + "/Voices.mp3");!open1 || !open2) {
         throw std::runtime_error("Failed to load audio files for track: " + title);
     }
 }
