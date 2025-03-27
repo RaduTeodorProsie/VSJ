@@ -50,20 +50,18 @@ runs:
     - name: Sanitizers
       shell: bash
       if: runner.os == 'Linux' && matrix.runs_asan == true
-      continue-on-error: true
       env:
         ASAN_OPTIONS: halt_on_error=0
         EXECUTABLE_NAME: ${{ env.EXECUTABLE_NAME }}
       run: |
-          xvfb-run ./scripts/run_sanitizers.sh || true
+          xvfb-run ./scripts/run_sanitizers.sh
       working-directory: ${{github.workspace}}
 
     - name: Valgrind
       shell: bash
       if: runner.os == 'Linux' && matrix.runs_valgrind == true
-      continue-on-error: true
       env:
         EXECUTABLE_NAME: ${{ env.EXECUTABLE_NAME }}
       run: |
-        xvfb-run ./scripts/run_valgrind.sh || true
+        xvfb-run ./scripts/run_valgrind.sh 
       working-directory: ${{github.workspace}}
